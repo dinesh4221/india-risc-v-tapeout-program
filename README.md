@@ -13,7 +13,7 @@
 | **Iverilog** | Compiler & Simulator for Verilog |
 | **GTKWave** | Waveform Analysis and Visualize signals over time|
 
-### **TOOL CHECK**
+### **TOOLs**
 
 #### <ins>**Yosys Installation**</ins>
 ```bash
