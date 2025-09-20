@@ -6,6 +6,13 @@
 
 Digital VLSI planning in System-on-Chip (SoC) design is the process of integrating processors, memory, interconnects, and peripherals on a single chip while meeting performance, power, and area goals.
 
+### Program Objective
+
+We will learn to design a SoC from RTL(Registe transfer level coding) to GDSII(Graphic Data System II) using open source tools in this program. 
+
+SoC design:
+RTL coding➡️Simulation➡️Synthesis➡️Netlist➡️Physical Design➡️Layout➡️GDSII
+
 ### 🔑 Key Steps
 
 - Specification – Define system functionality, performance, power, and area constraints.
