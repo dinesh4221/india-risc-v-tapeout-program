@@ -7,6 +7,12 @@
 - Ubuntu 20.04 or higher
 - 4 vCPU
 
+| Tool | Purpose | 
+|------|---------|
+| **Yosys** | RTL Synthesis & Logic Optimization |
+| **Iverilog** | Compiler & Simulator for Verilog |
+| **GTKWave** | Waveform Analysis and Visualize signals over time|
+
 ### **TOOL CHECK**
 
 #### <ins>**Yosys Installation**</ins>
@@ -40,3 +46,5 @@ $ sudo apt install gtkwave
 ```
 
 <img width="903" height="112" alt="Image" src="https://github.com/user-attachments/assets/4d616228-f2a0-492d-8abf-1b4cf38147c9" />
+
+
