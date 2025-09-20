@@ -1,7 +1,7 @@
 
 # RISC-V TAPEOUT PROGRAM
 
-## Week-0 (Tools Installation)
+## Week-1 (Tools Installation)
 
 ### **System Requirements**
 - 6 GB RAM
