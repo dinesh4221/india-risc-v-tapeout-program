@@ -1,7 +1,5 @@
 
-# RISC-V TAPEOUT PROGRAM
-
-## Week-1 (Tools Installation)
+# Week-1 (TASK-2 Tools Installation)
 
 ### **System Requirements**
 - 6 GB RAM
@@ -26,63 +24,19 @@ $ make config-gcc
 $ make 
 $ sudo make install
 ```
+<img width="806" height="261" alt="Image" src="https://github.com/user-attachments/assets/decf1167-b3c0-4974-8c2c-49a6321e7841" />
 
-
-#### <ins>**Iverilog**</ins>
+#### <ins>**Iverilog Installation**</ins>
 ```bash
 $ sudo apt-get update
 $ sudo apt-get install iverilog
 ```
-![Alt Text](Images/Iverilog_installation_done.jpeg)
+<img width="887" height="621" alt="Image" src="https://github.com/user-attachments/assets/f685cdd0-6f77-4c97-a70d-e593c790d2ae" />
 
 #### <ins>**gtkwave**</ins>
 ```bash
 $ sudo apt-get update
 $ sudo apt install gtkwave
 ```
-![Alt Text](Images/gtkwave_installation_done.jpeg)
 
-#### <ins>**ngspice**</ins>
-After downloading the tarball from https://sourceforge.net/projects/ngspice/files/ to a local directory, unpack it using:
-```bash
-$ tar -zxvf ngspice-37.tar.gz
-$ cd ngspice-37
-$ mkdir release
-$ cd release
-$ ../configure  --with-x --with-readline=yes --disable-debug
-$ make
-$ sudo make install
-```
-![Alt Text](Images/ngspice_installation_done.jpeg)
-
-#### <ins>**magic**</ins>
-Install the required dependencies:
-```bash
-$ sudo apt-get install m4
-$ sudo apt-get install tcsh
-$ sudo apt-get install csh
-$ sudo apt-get install libx11-dev
-$ sudo apt-get install tcl-dev tk-dev
-$ sudo apt-get install libcairo2-dev
-$ sudo apt-get install mesa-common-dev libglu1-mesa-dev
-$ sudo apt-get install libncurses-dev
-```
-Clone and build Magic:
-```bash
-$ git clone https://github.com/RTimothyEdwards/magic
-$ cd magic
-$ ./configure
-$ make
-$ sudo make install
-```
-![Alt Text](Images/magic_installation_done.jpeg)
-
-### <ins>**Tool Versions**</ins>
-```bash
-$ git --version
-$ docker --version
-$ python3 --version
-$ python3 -m pip --version
-$ make --version
-```
-![Alt Text](Images/Tool_versions.jpeg)
+<img width="903" height="112" alt="Image" src="https://github.com/user-attachments/assets/4d616228-f2a0-492d-8abf-1b4cf38147c9" />
