@@ -4,7 +4,7 @@
 ## Week-0 (Tools Installation)
 
 ### **System Requirements**
-- 4 GB RAM
+- 6 GB RAM
 - 50 GB HDD
 - Ubuntu 20.04 or higher
 - 4 vCPU
@@ -26,7 +26,7 @@ $ make config-gcc
 $ make 
 $ sudo make install
 ```
-![Alt Text](Images/yosys_installation_done.jpeg)
+
 
 #### <ins>**Iverilog**</ins>
 ```bash
