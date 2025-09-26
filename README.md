@@ -1,5 +1,5 @@
 
-# Week-1 (TASK-2 Tools Installation)
+# Week-0 (TASK-2 Tools Installation)
 
 ### **System Requirements**
 - 6 GB RAM
