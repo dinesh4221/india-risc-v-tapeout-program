@@ -1,4 +1,4 @@
-# Week-1(Task-1 Introduction to the Program)
+# Week-0(Task-1 Introduction to the Program)
 
 ## 📘 Digital VLSI Planning in SoC Design
 
