@@ -19,7 +19,8 @@ It scans the design and eliminates:
 
   #### NOTE: PMOS Transistor stacking increases resistance way more than the NMOS Transistor stacking which leads to:
   #### - Degraded Performance
-  #### - Slower Switching 
+  #### - Slower Switching
+  #### So it is more preferred to NAND gates than Nor gates.
 
 ### Examples
 
