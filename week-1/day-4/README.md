@@ -229,11 +229,17 @@ gtkwave tb_blockig_caveat.vcd
  ```bash
   iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v
   ./a.out
-  gtkwave tb_bblocking_caveat.vcd
+  gtkwave tb_blocking_caveat.vcd
   ```
 
 <img width="1208" height="215" alt="gtkwave of netlist blocking caveat" src="https://github.com/user-attachments/assets/38058886-cdad-4ede-9c0b-cab12b34f857" />
 
+
+#### 🔎 Observation
+- RTL simulation executes statements top-down, so you see one behavior.
+- Synthesis maps these to flip-flops, which are parallel hardware. The hardware updates simultaneously
+- propagate incorrect data through registers → causes wrong outputs in downstream logic.
+- This mismatch is occured due to the Blocking Caveat.
 
 
 
