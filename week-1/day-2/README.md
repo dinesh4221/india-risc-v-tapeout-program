@@ -235,7 +235,137 @@ show
 ```
 
 
+
 <img width="1212" height="270" alt="dff sync reset block" src="https://github.com/user-attachments/assets/2648e778-d4ed-4e69-9b81-5ff68b588ba4" />
+
+
+
+
+# 📌Optimisation
+
+In digital VLSI design flow, optimization is the stage (or set of steps) where the design is refined to meet performance, power, and area (PPA) requirements while still being functionally correct.
+
+## 🔹 Types of Optimization in Digital Design
+
+- Timing Optimization
+
+   - Reduce critical path delay to meet clock frequency.
+   - Techniques: gate sizing, buffer insertion, retiming, pipelining.
+
+- Area Optimization
+
+   - Reduce chip silicon footprint.
+   - Techniques: logic sharing, removing redundant gates, using smaller cells.
+
+- Power Optimization
+
+   - Minimize dynamic and static power.
+   - Techniques: clock gating, multi-Vt cells, power gating, low-power libraries.
+
+- Interconnect Optimization
+
+   - Reduce wire delay & congestion.
+   - Techniques: layer assignment, buffer insertion, routing optimization.
+
+## 👉 Example
+
+
+<img width="681" height="222" alt="mul2 and 8 verilog codes" src="https://github.com/user-attachments/assets/e51ea419-b804-4c2b-a0eb-c87e0394a0cc" />
+
+Two verilog codes which performs multiplication of a input by 2 and 8.
+
+### Multipled by 2
+
+```bash
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_2.v
+synth -top mul2
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+
+
+<img width="1212" height="325" alt="optimisation1(a0)" src="https://github.com/user-attachments/assets/0c8c9f86-83d3-488b-b123-88b8109b9bbb" />
+
+
+#### Generating Netlist File
+
+
+```bash
+write_verilog mul2_net.v
+!gvim mul2_net.v
+```
+
+
+
+<img width="422" height="219" alt="mul2 netlist" src="https://github.com/user-attachments/assets/75f154a4-5ca7-4aef-93a4-362c222d65bf" />
+
+
+
+#### 🔎 Observation
+
+The output netlist file doesn't implement a multiplier instead it shifts the input to the left by 1 bit(as multiplication of a binary number by 2 shifts the number by 1-bit).
+
+
+
+### Multiplied by 8
+
+
+```bash
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mult_8.v
+synth -top mult_8
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+
+<img width="1212" height="325" alt="optimisation mult8" src="https://github.com/user-attachments/assets/34616ba4-424a-450d-9870-8936934868d2" />
+
+
+
+#### Generating Netlist File
+
+
+```bash
+write_verilog mul2_net.v
+!gvim mult_8_net.v
+```
+
+
+<img width="637" height="142" alt="mult8 netlist" src="https://github.com/user-attachments/assets/77d7d9b8-9ce1-4e08-ad22-d58cdcc573df" />
+
+
+#### 🔎 Observation
+
+
+The bits of the input(binary) are shifted by 3-bits instead implementing a multiplier which performs the multiplication of the input with 8.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
