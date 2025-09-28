@@ -25,6 +25,13 @@ electronics because they combine high performance with low power usage in a smal
 
 In essence, an SoC is like having a miniature computer on a single chip, designed for specific applications where space, power, and performance optimization are critical.
 
+### Block Diagram of a SoC
+
+<div align="center">
+<img width="331" height="300" alt="image" src="https://github.com/user-attachments/assets/70382d63-6e44-4cb6-aa01-8cfa7458850e" />
+</div>
+
+  
 <details>
   <summary>Components of a SoC</summary>
 
@@ -133,7 +140,7 @@ A behavioural PLL to illustrate how SoCs generate internal clocks from an extern
 - **Interconnect**:
 A lightweight memory-mapped bus connecting CPU, memory, and peripherals.
 
-### Why "Baby"?
+### Why "BabySoC"?
 
 Compared to real-world SoCs (millions of gates, multiple cores, high-speed interfaces), BabySoC is tiny and minimalistic.
 
@@ -145,7 +152,40 @@ It’s meant as a teaching tool for:
 
 - Building confidence before moving on to RTL design and physical implementation (e.g., Sky130).
 
-👉 In short, BabySoC = a small, open-source, educational SoC that gives learners a hands-on introduction to digital-analog integration and SoC fundamentals.
+### Functional Modelling of BabySoC
+
+Functional modelling is the first step in designing the BabySoC, where the focus is on what the system does, not on how it is implemented in hardware. It provides a behavioral representation of the SoC’s functionality to validate the design concept before writing RTL or performing physical design.
+
+#### Purpose
+
+- To verify the overall operation of the BabySoC.
+
+- To test instruction execution, data flow, and control logic in a simplified model.
+
+- To allow early software development without requiring the final hardware.
+
+- To serve as a reference model for later RTL verification.
+
+
+#### Approach
+
+- Often implemented in high-level languages like C, C++, or SystemC.
+
+- Focuses on correct functionality, ignoring timing, clock cycles, and hardware constraints.
+
+- Outputs from the functional model are used as a golden reference to verify RTL behavior.
+
+#### Benefits
+
+- Detects architectural errors early.
+
+- Reduces time and cost by minimizing redesigns in RTL.
+
+- Enables parallel hardware-software co-development.
+
+- Provides a clear understanding of BabySoC behavior before physical implementation.
+
+👉 In short, BabySoC is a small, open-source, educational SoC that gives learners a hands-on introduction to digital-analog integration and SoC fundamentals.
 
 </details>
 
@@ -205,8 +245,66 @@ It’s meant as a teaching tool for:
 
 ## Role of Functional Modelling in SoC Design
 
+### What is Functional Modelling?
+
+Functional modelling is the early stage representation of an SoC’s behavior, where the focus is on what the system does rather than how it is implemented.
+
+- Typically done using high-level languages (C, C++, SystemC, Python, MATLAB).
+
+- Describes the intended functionality and data flow, without worrying about clock cycles, registers, or hardware constraints.
+
+- Example: Modeling a CPU instruction set simulator (ISS) to check correctness of instruction execution before designing the RTL.
+
+### Why Functional Modelling Comes Before RTL
+
+RTL (Register Transfer Level) describes hardware at the cycle-accurate level (Verilog/VHDL). Jumping straight into RTL without validating functionality can lead to costly design errors.
+
+Functional modelling ensures:
+
+- **Early Validation of Specifications**
+  
+Confirms that the SoC’s architecture (datapath, control, memory hierarchy, communication protocols) works as intended.
+
+- **System-Level Simulation**
+
+Enables fast, abstract simulations to test algorithms, throughput, latency, and overall performance.
+
+- **Exploration of Design Trade-offs**
+
+Helps architects evaluate different approaches (e.g., CPU vs. accelerator, memory sizes, bus widths) without committing to RTL.
+
+- **Software/Hardware Co-Development**
+  
+Embedded software teams can start development using the functional model even before RTL is available.
+
+### Bridge to RTL Design
+
+Once functionality is validated, the functional model acts as a golden reference during RTL development:
+
+- RTL is written to match the functional model behavior.
+
+- Verification engineers compare RTL simulation results against the functional model outputs.
+
+- Ensures that functionality is correct before timing and physical constraints are applied.
+
+### Why Before Physical Design?
+
+- Physical design (place-and-route, clock tree synthesis, timing closure, etc.) deals with chip layout and manufacturing constraints.
+
+- If functionality errors are discovered this late, fixing them is extremely expensive.
+
+- Functional modelling avoids such late-stage rework by catching logic/architectural bugs early.
+
+Functional modelling plays a critical role in verifying correctness, exploring architectures, and enabling early software development before investing in RTL and physical implementation.
 
 
+## Conclusion
+
+This repository provides a comprehensive overview of the fundamentals of System-on-Chip (SoC) design, covering key concepts such as SoC components, functional modelling, RTL design, interconnects, peripherals, and verification strategies. It highlights the importance of modular design, early functional validation, and careful consideration of performance, power, and security challenges in SoC development.
+
+The BabySoC serves as a miniature, manageable SoC, allowing learners to go through conceptual design → functional modelling → RTL → verification, building a solid foundation for advanced SoC development and embedded system design.
+
+By studying the materials in this repo, readers can build a strong theoretical foundation for understanding how SoCs are architected, verified, and optimized, serving as a stepping stone for practical design and advanced research in digital and embedded systems.
 
 
 
