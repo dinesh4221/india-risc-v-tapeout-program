@@ -14,11 +14,11 @@
 
 - **10-bit Digital-to-Analog Converter (DAC)**: Facilitates communication with analog devices by converting digital signals to analog form.
 
-<div "align=center">
-
-<img width="829" height="481" alt="image" src="https://github.com/user-attachments/assets/1decffd3-f9a1-486d-869c-7e8ca1b3fac6" />
+<div align="center">
+<img width="829" height="481" alt="image" src="https://github.com/user-attachments/assets/b632e80f-3e72-434c-b770-f8b0c6f1d98c" />
 
 </div>
+
 
 ## 🎯 Why VSDBabySoC?
 
