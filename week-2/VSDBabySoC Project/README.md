@@ -18,8 +18,12 @@
 
 - First clone the Github Repository (https://github.com/kunalg123/rvmyth/)
 
+```bash
+git clone https://github.com/kunalg123/rvmyth/
+```
+
 <details>
-  <summary>RVMYTH</summary>
+  <summary>RVMYTH</summary
 
 ### RISC-V MYTH CORE
 
@@ -27,6 +31,12 @@
 
 - Observe and analyse the Waveforms using **GTKWave**.
 
+
+```bash
+iverilog mythcore_test.v tb_mythcore_test.v
+./a.out
+gtkwave tb_mythcore_test.vcd
+```
 
 
 
@@ -72,7 +82,160 @@
 
 - Clone the Github Repository (https://github.com/manili/VSDBabySoC)
 
-- 
+```bash
+git clone https://github.com/manili/VSDBabySoC
+cd VSDBabySoC
+```
+
+<details>
+  <summary>VSDBabySoC</summary>
+
+- Convert the RVMYTH TLV file to Verilog
+
+```bash
+# Tools Installation
+sudo apt update
+sudo apt install python3-venv python3-pip
+
+# Create a virtual environment
+python3 -m venv sp_env
+source sp_env/bin/activate
+
+# Install SandPiper-SaaS
+pip install pyyaml click sandpiper-saas
+
+# TLV → Verilog
+sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/
+
+```
+
+- Make a directory where simulation output files will be stored.
+
+```bash
+
+mkdir -p output/pre_synth_sim
+
+```
+
+- Simulate the Testbench using **IVerilog**.
+
+```bash
+
+iverilog -o output/pre_synth_sim/pre_synth_sim.out \
+  -DPRE_SYNTH_SIM \
+
+## Add include search path for header files
+  -I src/include -I src/module \
+
+## Top-level verilog testbench to compile
+  src/module/testbench.v
+
+## Run the simulation executable
+cd output/pre_synth_sim
+./pre_synth_sim.out
+
+```
+
+- Analyze the waveforms in **GTKWave**.
+
+```bash
+
+gtkwave pre_synth_sim.vcd
+
+```
+
+### Waveform Analysis
+
+<img width="1221" height="795" alt="Pre-synthesis Output waveform" src="https://github.com/user-attachments/assets/f201ec90-1f54-405c-9ee2-1d1ddd1286e9" />
+
+
+Clock Signals
+
+1.CLK and derived PLL clock signals are visible.
+
+   - The PLL generates different frequency clocks (CLK_CP, refclk, vco_clk).
+
+   - The yellow sinusoidal-looking signals represent analog-modelled PLL outputs (like VCO frequency              tracking, phase difference).
+
+   - refclk vs vco show the phase comparison behavior.
+
+   - As simulation progresses, the PLL locks (stable periodic waveform).
+
+2.Reset (rst_n)
+
+   - Initially, system reset is asserted (0).
+
+   - Later released (1) to start the CPU execution.
+
+3.CPU Signals
+
+   - CPU_dmem_addr, CPU_dmem_ld_data etc. indicate instruction fetch and memory access.
+
+   - You see binary activity (green toggling) → CPU is fetching instructions and executing them.
+
+   - CPU_dmem_rd_data toggles between values like 0x31, 0x00000001 etc., confirming proper instruction flow.
+
+4.PLL Behavior
+
+   - vco_freq and refpd (phase difference) are plotted.
+
+   - Initially, VCO frequency is unstable (nan values), then it converges (~759.01 MHz).
+
+   - refpd converges to a small error, showing PLL locked condition.
+
+5.Output Signals
+
+   - OUT (from CPU or SoC testbench) shows data values (946, etc.).
+
+   - This indicates the RISC-V core completed execution of its program and produced outputs.
+
+### 🔍 Observations
+
+- PLL Locking: The yellow sinusoidal signals (VCO vs ref) show the PLL gradually reaching lock — VCO frequency stabilizes.
+
+- RISC-V Core Activity: Instruction/data signals toggling means CPU is running code correctly.
+
+- Memory Interaction: CPU is actively fetching from memory (dmem signals change).
+
+- Final Outputs: The OUT signal produces a numeric result, which means the SoC has executed the intended program successfully.
+
+### 📖 Conclusion
+
+This waveform confirms that:
+
+- The PLL is locking properly (phase difference reduces, VCO stabilizes).
+
+- The RVMyth RISC-V CPU is functional, fetching instructions and computing.
+
+- SoC integration works — clocking, memory, and CPU interaction are correct.
+
+- The OUT values verify the test program ran to completion.
+
+**Core Signals**
+
+<img width="937" height="193" alt="core waveform" src="https://github.com/user-attachments/assets/555099a0-30eb-4836-a989-02c7f295b4ec" />
+
+- Fetches instructions from memory and executes them.
+
+- CPU is running instructions.
+
+- The instruction flow is visible as memory accesses.
+
+**PLL signals**
+
+<img width="937" height="193" alt="pll waveform" src="https://github.com/user-attachments/assets/88d42504-60b0-4c04-9c5f-57f4fe2eccc7" />
+
+- The PLL module in the design is a behavioral model that mimics the real analog PLL (which generates a higher-frequency clock for the CPU).
+
+**DAC signals**
+
+
+<img width="937" height="193" alt="dac waveform" src="https://github.com/user-attachments/assets/f0ff3af4-c120-4582-bf15-8131a8c2bb45" />
+
+- `avsddac` converts this 10-bit digital value to an analog voltage.
+
+</details>
+
 
 
 
