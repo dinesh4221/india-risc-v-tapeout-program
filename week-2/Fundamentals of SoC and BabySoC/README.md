@@ -31,6 +31,28 @@ In essence, an SoC is like having a miniature computer on a single chip, designe
 <img width="331" height="300" alt="image" src="https://github.com/user-attachments/assets/70382d63-6e44-4cb6-aa01-8cfa7458850e" />
 </div>
 
+## 🔹 Why "SoC"?
+
+SoCs are designed because of integration, efficiency, and cost advantages:
+
+- High integration – Combines many functionalities into one chip, reducing board size.
+
+- Lower power consumption – Less communication between chips → more energy-efficient (essential for mobiles, wearables, IoT).
+
+- Reduced cost – Fewer external components, less PCB area, and mass production savings.
+
+- Higher performance – On-chip interconnects are faster than chip-to-chip communication.
+
+- Reliability – Fewer components → fewer solder joints → higher reliability.
+
+- Customization – SoCs can be tailored for specific applications (e.g., smartphone SoC, automotive SoC, AI accelerator SoC).
+
+## Design Flow
+
+<div align="center">
+<img width="424" height="567" alt="image" src="https://github.com/user-attachments/assets/f65b0f90-bf83-4278-81d4-512199df2ef8" />
+</div>
+
   
 <details>
   <summary>Components of a SoC</summary>
