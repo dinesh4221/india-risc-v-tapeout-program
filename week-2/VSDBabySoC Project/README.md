@@ -14,7 +14,45 @@
 
 - **10-bit Digital-to-Analog Converter (DAC)**: Facilitates communication with analog devices by converting digital signals to analog form.
 
-## Step-by-step Guide for Set-up
+<div "align=center">
+
+<img width="829" height="481" alt="image" src="https://github.com/user-attachments/assets/1decffd3-f9a1-486d-869c-7e8ca1b3fac6" />
+
+</div>
+
+## 🎯 Why VSDBabySoC?
+
+1.Educational Purpose
+
+   - Helps beginners understand how different SoC components (CPU, clocking, memory) fit together.
+
+   - Provides a real RTL-to-simulation flow using open-source EDA tools (Icarus Verilog, GTKWave, Yosys, etc.).
+
+2.Bridging Core & SoC Design
+
+   - Many students learn CPU design (like RVMyth) but don’t see how it plugs into a full SoC.
+
+   - BabySoC bridges that gap by integrating the CPU into a complete system.
+
+3.Demonstrates Integration Challenges
+
+   - Clocking with PLL.
+
+   - Memory interfacing with CPU.
+
+   - Reset, testbenching, and SoC-level verification.
+
+4.Open-Source Ecosystem
+
+   - Encourages learning and research without expensive proprietary tools.
+
+   - Can be extended for advanced research (FPGA prototyping, Sky130 tapeout, peripheral addition).
+
+5.Scalable Learning
+
+   - “Baby” SoC is small and simple, but the same concepts scale up to industrial SoC design.
+
+## Step-by-step Guide for Set-up and Simulation
 
 - First clone the Github Repository (https://github.com/kunalg123/rvmyth/)
 
@@ -221,6 +259,25 @@ This waveform confirms that:
 
 - The instruction flow is visible as memory accesses.
 
+- Instruction memory contains:
+
+| Clock | Instruction |
+|-----|-------------|
+| 0 | ADDI r9, r0, 1 |
+| 1 | ADDI r10, r0, 101011 (decimal 43) |
+| 2 | ADDI r11, r0, 0 |
+| 3 | ADDI r17, r0, 0 |
+| 4 | ADD r17, r17, r11 |
+| 5 | ADDI r11, r11, 1 |
+| 6 | BNE r11, r10, -8   (loop back) |
+| 7 | ADD r17, r17, r11 |
+| 8 | SUB r17, r17, r11 |
+| 9 | SUB r11, r11, r9 |
+| 10 | BNE r11, r9, -8 |
+| 11 | SUB r17, r17, r11 |
+| 12 |BEQ r0, r0, -16 (infinite loop) |
+
+
 **PLL signals**
 
 <img width="937" height="193" alt="pll waveform" src="https://github.com/user-attachments/assets/88d42504-60b0-4c04-9c5f-57f4fe2eccc7" />
@@ -234,11 +291,34 @@ This waveform confirms that:
 
 - `avsddac` converts this 10-bit digital value to an analog voltage.
 
+- DAC Output Calculation
+
+   - For a constant r17 value:
+     OUT = (𝑟17/1023)*VREFH
+
+   - Maximum value of 10-bit DAC: 1023 → maps to VREFH.
+
+- Output waveform: step function, rises from 0 → r17/1023 * VREFH, then stays constant.
+
+- No oscillation unless CPU loop modifies r17 continuously (here, final loop is infinite with no writes to r17 affecting DAC, so output is constant).
+
 </details>
 
 
 
+## Conclusion
 
+The VSDBabySoC project successfully integrates a PLL (Phase Locked Loop), the RVMyth RISC-V core, and on-chip memory into a working **System-on-Chip (SoC)**. The pre-synthesis simulation waveform (shown above) demonstrates the correct operation of all major blocks:
+
+- The PLL locks onto the reference clock and generates a stable, higher-frequency CPU clock.
+
+- The RVMyth core fetches and executes instructions from memory, showcasing proper pipeline operation and memory access.
+
+- The SoC output (OUT) reflects the expected results of the executed program, confirming functional correctness.
+
+This validates the design flow from RTL description to simulation, proving that an open-source RISC-V CPU can be integrated with standard SoC components to form a functional system. The project also demonstrates the power of open-source EDA tools (**Icarus Verilog**, **GTKWave**) in enabling complete SoC design and verification.
+
+With this foundation, the VSDBabySoC can be extended further with additional peripherals, optimized synthesis, and physical design to realize a fully functional silicon implementation.
 
 
 
