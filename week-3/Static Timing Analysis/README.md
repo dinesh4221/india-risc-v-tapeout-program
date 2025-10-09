@@ -12,7 +12,7 @@ It determines:
 
 - Potential timing violations (setup or hold).
 
-## ⚙️ 2. Why STA is Needed
+## ⚙️ Why STA is Needed
 
 - Simulation can miss critical timing violations because it only checks specific input vectors.
 
@@ -84,6 +84,106 @@ from chip timing to software compilation and parallel computation.
 In STA, a DAG helps trace timing paths, propagate delays, and ensure no feedback in combinational logic.
 
 <img width="1366" height="736" alt="Screenshot (26)" src="https://github.com/user-attachments/assets/efd952db-9fb7-434c-af94-a82b8bab26f3" />
+
+
+## On Chip Variations (OCV)
+
+### 🧠 What is On-Chip Variation (OCV)?
+
+Even though a chip is manufactured as a single die, not all transistors or interconnects behave identically.
+Due to process variations, voltage drops, and temperature gradients, the delay of gates and wires can vary across different parts of the same chip.
+
+These intra-die variations are called On-Chip Variations (OCV).
+
+### ⚙️ Why OCV Matters in STA
+
+In traditional STA, we assume one PVT corner (e.g., SS or FF) applies to the whole chip.
+But in reality:
+
+- Some cells may behave like SS (slow) corner.
+
+- Others may behave like FF (fast) corner.
+
+- If we don’t account for this variation, we may get over-optimistic timing results → possible silicon failures.
+
+- So STA tools model OCV to make analysis more realistic and conservative.
+
+### Etching Process Variations
+
+Etching defines feature dimensions (like gate length, interconnect width, and dielectric thickness).
+However, etching is not perfectly uniform across the wafer or die.
+
+#### How It Causes OCV:
+
+- Line-width variation:
+
+   - Over-etch → narrower metal or polysilicon line → higher resistance → slower signal.
+   - Under-etch → wider line → lower resistance → faster signal.
+
+- Etch depth variation:
+
+   - Varies interconnect cross-section → affects RC delay.
+   - Example: uneven via or trench etch depth changes R of via and C between metals.
+
+- Microloading / pattern dependency:
+
+   - Dense areas etch slower → slightly thicker oxide or narrower lines.
+   - Sparse areas etch faster → thinner oxide or wider lines.
+   - Leads to within-die delay differences → modeled as spatial OCV.
+ 
+<div align="center">
+
+<img width="587" height="390" alt="image" src="https://github.com/user-attachments/assets/7d283658-0067-4a5a-b02b-96ea05a00e7a" />
+
+</div>
+
+### Oxide Thickness
+
+<div align="center">
+
+<img width="797" height="444" alt="image" src="https://github.com/user-attachments/assets/1bb64f52-c4ee-401d-bfb3-0b3a8eca78f2" />
+
+
+</div>
+
+### 📏  How OCV is Applied
+
+OCV is modeled by derating the timing delays of launch and capture paths differently.
+
+- For Setup Analysis:
+
+   - We want to ensure data doesn’t arrive too late.So, assume worst case:
+
+     - Launch path → slower (data delayed)
+     - Capture path → faster (clock arrives early)
+
+   - Setup check with OCV:
+  
+     - Data path delay × (1 + derate)
+     - Clock path delay × (1 – derate)
+
+- For Hold Analysis:
+
+  - We want to ensure data doesn’t arrive too early.So, assume worst case:
+
+    - Launch path → faster (data comes early)
+
+    - Capture path → slower (clock arrives late)
+
+  - Hold check with OCV:
+
+     - Data path delay × (1 – derate)
+     - Clock path delay × (1 + derate)
+
+
+
+
+
+
+
+
+
+
 
 
 
