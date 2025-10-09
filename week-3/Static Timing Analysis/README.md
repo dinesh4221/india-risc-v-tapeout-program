@@ -76,7 +76,9 @@ before the hold window closes.
 - Data to Data
 - Latch
 
-### Directed Acyclic Graph (DAG) / Timing Graph
+<details>
+
+<summary>Directed Acyclic Graph (DAG) / Timing Graph</Summary>
 
 Directed Acyclic Graph (DAG) is a fundamental structure used wherever order, dependency, and no cycles are essential —
 from chip timing to software compilation and parallel computation.
@@ -85,9 +87,41 @@ In STA, a DAG helps trace timing paths, propagate delays, and ensure no feedback
 
 <img width="1366" height="736" alt="Screenshot (26)" src="https://github.com/user-attachments/assets/efd952db-9fb7-434c-af94-a82b8bab26f3" />
 
+</details>
 
-## On Chip Variations (OCV)
+<details>
+ <summary>Timing Reports</summary>
 
+### What is a Timing Report?
+
+A timing report in STA tools (like Synopsys PrimeTime, Cadence Tempus, or OpenSTA) summarizes timing information for a specific path or set of paths between two sequential elements (usually flip-flops).
+
+It helps verify:
+
+- Setup check (max delay)
+- Hold check (min delay)
+- Slack (timing margin)
+
+### Typical Timing Report Sections
+- Path Header
+- Clock Information
+- Data Path (Launch → Capture)
+- Capture Clock Path
+- Setup/Hold Requirement
+
+### Example
+
+ <div align="center">
+
+<img width="558" height="517" alt="image" src="https://github.com/user-attachments/assets/56098262-1b81-4845-81d1-507f3fa03d67" />
+
+ </div>
+
+</details>
+
+<details>
+ <summary> On Chip Variations (OCV)</summary>
+ 
 ### 🧠 What is On-Chip Variation (OCV)?
 
 Even though a chip is manufactured as a single die, not all transistors or interconnects behave identically.
@@ -175,7 +209,7 @@ OCV is modeled by derating the timing delays of launch and capture paths differe
      - Data path delay × (1 – derate)
      - Clock path delay × (1 + derate)
 
-
+</details>
 
 
 
