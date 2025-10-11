@@ -63,15 +63,25 @@ clean -purge
 rename -enumerate
 ```
 
+<div align="center">
+ 
 <img width="554" height="620" alt="rvmyth components" src="https://github.com/user-attachments/assets/67e4900f-5e21-466a-8454-4032ca566f99" />
 
+</div>
 
+<div align="center">
+ 
 <img width="554" height="355" alt="vsd components" src="https://github.com/user-attachments/assets/aabf6aea-b720-488d-8267-580b9514be0a" />
+
+</div>
 
 #### Design Heirarchy
 
+<div align="center">
+ 
 <img width="499" height="710" alt="design heirarchy" src="https://github.com/user-attachments/assets/411f8e62-d654-4374-a810-cf6a95e814d3" />
 
+</div>
 
 ### Netlist 
 
@@ -99,6 +109,14 @@ gtkwave post_synth_sim.vcd
 ```
 
 ## 📈 Waveform Analysis
+
+<div align="center">
+
+<img width="838" height="450" alt="waveform comparison" src="https://github.com/user-attachments/assets/c3643ecc-7f9e-40ca-832d-f68aed170249" />
+
+</div>
+
+**Gate-Level Simulation** ensures your synthesized design works exactly like your RTL and meets all timing requirements before tapeout or fabrication.
 
 
 # Timing Analysis of VSDBabySoC
