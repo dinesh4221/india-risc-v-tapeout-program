@@ -212,7 +212,33 @@ OCV is modeled by derating the timing delays of launch and capture paths differe
 </details>
 
 
+<details>
+ <summary>OpenSTA</summary>
 
+ ## ⚙️ What is OpenSTA?
+
+OpenSTA (Open Source Static Timing Analyzer) is an open-source tool used to perform Static Timing Analysis (STA) on digital designs — mainly after synthesis and placement & routing (PnR).
+
+It helps ensure that your circuit meets timing requirements like setup, hold, clock skew, and propagation delay without running simulation.
+
+## 🔍 Why Use OpenSTA?
+
+After synthesis or layout, your design has:
+
+- Gate-level netlist (from Yosys)
+
+- Timing libraries (.lib) from Sky130 PDK
+
+- Constraints (.sdc) defining clock, input/output delays
+
+👉 OpenSTA checks timing between flip-flops, combinational logic, and I/O ports to ensure:
+
+- The circuit runs at the target frequency.
+
+- No timing violations (setup/hold) exist.
+  
+
+</details>
 
 
 
