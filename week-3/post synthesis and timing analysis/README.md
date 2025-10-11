@@ -101,8 +101,7 @@ gtkwave post_synth_sim.vcd
 ## 📈 Waveform Analysis
 
 
-
-
+# Timing Analysis of VSDBabySoC
 
 
 
